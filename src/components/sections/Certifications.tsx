@@ -1,5 +1,5 @@
-import React from 'react';
-import { Award, ExternalLink } from 'lucide-react';
+import React, { useState } from 'react';
+import { Award, ExternalLink, ChevronDown } from 'lucide-react';
 
 type Certificate = {
   id: number;
@@ -50,49 +50,76 @@ const certificationsData: Certificate[] = [
   }
 ];
 
-const Certifications: React.FC = () => {
+const AccordionItem: React.FC<{ cert: Certificate; isOpen: boolean; onClick: () => void; }> = ({ cert, isOpen, onClick }) => {
   return (
-    <section id="certifications" className="py-20 bg-gray-50 dark:bg-gray-800">
+    <div className="border-b border-gray-200 dark:border-gray-700/50">
+      <button
+        className="w-full flex justify-between items-center text-left py-4 px-6 focus:outline-none"
+        onClick={onClick}
+      >
+        <div className="flex items-center">
+          <Award size={20} className="text-blue-600 dark:text-blue-400 mr-4" />
+          <span className="font-semibold text-gray-800 dark:text-white">{cert.title}</span>
+        </div>
+        <div className="flex items-center">
+          <span className="text-sm text-gray-500 dark:text-gray-400 mr-4 hidden md:block">{cert.issuer}</span>
+          <ChevronDown 
+            size={20} 
+            className={`transform transition-transform ${isOpen ? 'rotate-180' : ''}`}
+          />
+        </div>
+      </button>
+      <div 
+        className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96' : 'max-h-0'}`}>
+        <div className="p-6 bg-gray-100 dark:bg-transparent">
+          <div className="flex flex-col md:flex-row items-center">
+            <img 
+              src={cert.image} 
+              alt={cert.title}
+              className="w-24 h-24 object-cover rounded-lg mb-4 md:mb-0 md:mr-6 flex-shrink-0"
+            />
+            <div className="text-center md:text-left">
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">{cert.description}</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">Issued: {cert.date}</p>
+              <a 
+                href={cert.credential} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline font-semibold text-sm"
+              >
+                View Credential <ExternalLink size={14} className="ml-1" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Certifications: React.FC = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const handleClick = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  return (
+    <section id="certifications" className="py-20 bg-gray-50 dark:bg-transparent">
       <div className="max-w-4xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Certifications</h2>
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Certifications & Learning</h2>
           <div className="w-20 h-1 bg-blue-600 dark:bg-blue-400 mx-auto"></div>
         </div>
         
-        <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-thin scrollbar-thumb-blue-400 scrollbar-track-blue-100">
-          {certificationsData.map(cert => (
-            <div key={cert.id} className="min-w-[260px] max-w-xs bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow flex-shrink-0">
-              <div className="flex flex-col items-center p-4">
-                {/* Certificate Image */}
-                <div className="w-16 h-16 mb-2 overflow-hidden flex items-center justify-center">
-                  <img 
-                    src={cert.image} 
-                    alt={cert.title}
-                    className="w-16 h-16 object-cover rounded-md"
-                  />
-                </div>
-                {/* Certificate Info */}
-                <div className="w-full text-center">
-                  <div className="flex items-center justify-center mb-1">
-                    <Award size={16} className="text-blue-600 dark:text-blue-400 mr-1" />
-                    <h3 className="text-base font-bold text-gray-800 dark:text-white truncate">{cert.title}</h3>
-                  </div>
-                  <div className="mb-1">
-                    <p className="text-blue-600 dark:text-blue-400 font-medium text-xs">{cert.issuer}</p>
-                    <p className="text-gray-500 dark:text-gray-400 text-xs">{cert.date}</p>
-                  </div>
-                  <p className="text-gray-600 dark:text-gray-300 mb-2 text-xs line-clamp-3">{cert.description}</p>
-                  <a 
-                    href={cert.credential} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline font-medium text-xs"
-                  >
-                    View Credential <ExternalLink size={12} className="ml-1" />
-                  </a>
-                </div>
-              </div>
-            </div>
+        <div className="rounded-2xl bg-white dark:bg-slate-900/70 dark:backdrop-blur-sm dark:border dark:border-slate-700/50 dark:shadow-2xl dark:shadow-purple-700/20">
+          {certificationsData.map((cert, index) => (
+            <AccordionItem 
+              key={cert.id}
+              cert={cert}
+              isOpen={openIndex === index}
+              onClick={() => handleClick(index)}
+            />
           ))}
         </div>
       </div>

@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "title": "E-Commerce Platform",
+    "description": "A full-featured e-commerce platform with product management, cart functionality, user authentication, and payment processing.",
+    "image": "https://images.pexels.com/photos/6169/woman-hand-smartphone-desk.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "techStack": ["React", "Node.js", "Express", "MongoDB", "Stripe API"],
+    "category": ["frontend", "backend", "fullstack"],
+    "githubLink": "https://github.com",
+    "liveLink": "https://example.com"
+  },
+  {
+    "id": 2,
+    "title": "Task Management App",
+    "description": "A productivity app for managing tasks, setting deadlines, and collaborating with team members. Features include drag-and-drop functionality and real-time updates.",
+    "image": "https://images.pexels.com/photos/1226398/pexels-photo-1226398.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "techStack": ["React", "Redux", "Firebase", "Material UI"],
+    "category": ["frontend", "fullstack"],
+    "githubLink": "https://github.com",
+    "liveLink": "https://example.com"
+  },
+  {
+    "id": 3,
+    "title": "Weather Forecast App",
+    "description": "A weather application that displays current weather conditions and 5-day forecasts for any location. Uses geolocation and weather APIs.",
+    "image": "https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "techStack": ["JavaScript", "HTML", "CSS", "OpenWeather API"],
+    "category": ["frontend"],
+    "githubLink": "https://github.com",
+    "liveLink": "https://example.com"
+  },
+  {
+    "id": 4,
+    "title": "Social Media API",
+    "description": "A RESTful API for a social media platform, handling user profiles, posts, comments, and authentication with JWT.",
+    "image": "https://images.pexels.com/photos/267350/pexels-photo-267350.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "techStack": ["Node.js", "Express", "MongoDB", "JWT"],
+    "category": ["backend", "api"],
+    "githubLink": "https://github.com",
+    "liveLink": "https://example.com"
+  },
+  {
+    "id": 5,
+    "title": "Portfolio Website",
+    "description": "A responsive portfolio website to showcase skills, projects, and professional information.",
+    "image": "https://images.pexels.com/photos/196645/pexels-photo-196645.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "techStack": ["React", "TailwindCSS", "Framer Motion"],
+    "category": ["frontend", "design"],
+    "githubLink": "https://github.com",
+    "liveLink": "https://example.com"
+  },
+  {
+    "id": 6,
+    "title": "Blog Platform",
+    "description": "A full-stack blog platform with features for creating, editing, and publishing articles, user comments, and analytics.",
+    "image": "https://images.pexels.com/photos/261662/pexels-photo-261662.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "techStack": ["Next.js", "PostgreSQL", "GraphQL", "AWS S3"],
+    "category": ["frontend", "backend", "fullstack"],
+    "githubLink": "https://github.com",
+    "liveLink": "https://example.com"
+  }
+]
